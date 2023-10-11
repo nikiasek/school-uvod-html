@@ -1,0 +1,14 @@
+body {
+    background: rgb(9,20,40);
+    background: linear-gradient(90deg, rgba(9,20,40,1) 0%, rgba(10,20,40,1) 100%);
+}
+
+@font-face {
+    font-family: beaufortlolbold;
+    src: url("fonts/beaufort/BeaufortforLOL-Bold.otf") format('woff');
+}
+
+h1 {
+    font-family: beaufortlolbold;
+    color:aliceblue;
+}
