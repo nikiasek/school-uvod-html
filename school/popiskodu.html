@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <div class="uvod">
+            <article>
+                <h1>
+                    Práce s API v pythonu
+                </h1>
+                <p>
+                    Dnes si ukážeme jak si udělat výpis z jakékoliv API hozené do tohoto
+                    programu.
+                </p>
+            </article>
+        </div>
+        <div class="tutorial">
+            <div class="t-funkce">
+                <h2>
+                    Funkce programu
+                </h2>
+                <p>
+                    v tomto programu se nacházejí 3 Funkce a každá má svojí úlohu
+                </p>
+                <hr>
+                <div class="f-tabulka">
+                    <h3>
+                        def tabulka(api)
+                    </h3>
+                    <p>
+                        základní věc co tato funkce dělá je, že vypíše informace z té api co jí zadáme
+                    </p>
+                    <pre>
+                        <code class="tabulkaCode">
+    def tabulka(api):
+        jsonData = api.json()
+        print(cara, "\n", api.url, "\n")
+        print("valid:", api.status_code, "\type:", api.encoding)
+        print(jsonData)
+        fileWrite(api)
+                        </code>
+                    </pre>
+                    <p>
+                        do této funkce vkládáme proměnou api, kterou dostaneme z funkce requestBuilder ale to potom.
+                        následně ta funkce vypíše všechno díky té proměnné
+                    </p>
+                    <hr>
+                </div>
+                <div class="f-requestBuilder">
+                    <h3>
+                        def requestBuilder(rawKey, rawApi)
+                    </h3>
+                    <p>
+                        tato funkce bere vstup a snaží se ho převést a zkontrolovat zda vstupní hodnota
+                        je či není validní. Později si ukážeme i jak jsme tyto vstupní hodnoty dostali. 
+                    </p>
+                    <p>
+                        pomocí pythonu používáme funkci IF, která pomocí podmínky vypracuje co jí zadáme                        
+                    </p>
+                    <pre>
+                        <code class="requestBuilderCode">
+    if rawApi !="":
+                        </code>
+                    </pre>
+                    <pre>
+                        <code>
+    def requestBuilder(rawKey, rawApi):
+    if rawApi !="":
+        if rawKey !="":
+            api = requests.get(rawApi + "&apiKey=" + rawKey)
+            tabulka(api)
+        else:
+            api = requests.get(rawApi)
+            tabulka(api)
+    else:
+        print("nezadal si api debile")
+        sys.exit()
+                        </code>
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </main>
+    <pre>
+        <code>
+            import requests
+            import json
+            from datetime import datetime
+            import sys
+
+            while True:
+                cara = "\n----------------------"
+                def tabulka(api):
+                    jsonData = api.json()
+                    print(cara, "\n", api.url, "\n")
+                    print("valid:", api.status_code, "\type:", api.encoding)
+                    print(jsonData)
+                    fileWrite(api)
+
+                def requestBuilder(rawKey, rawApi):
+                    if rawApi !="":
+                        if rawKey !="":
+                            api = requests.get(rawApi + "&apiKey=" + rawKey)
+                            tabulka(api)
+                        else:
+                            api = requests.get(rawApi)
+                            tabulka(api)
+                    else:
+                        print("nezadal si api debile")
+                        sys.exit()
+
+                def fileWrite(api):
+                    soubor = open("log.txt", "a")
+
+                    list = []
+                    list.append(cara)
+                    list.append(datetime.now().strftime('\n%Y-%m-%d %H:%M:%S'))
+                    list.append("\n" + api.url)
+                    list.append("\nvalid: " + str(api.status_code))
+                    list.append("\ntype: " + api.encoding)
+                    soubor.writelines(list)
+                    soubor.writelines("\n" + str(api.json()))
+                    soubor.write(cara)
+                    sys.exit()
+
+                requestBuilder(rawApi = input("yo, zadej api\n"), rawKey = input("zadej key\n"))
+        </code>
+    </pre>
+</body>
+</html>
