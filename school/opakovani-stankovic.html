@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        abbr {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sémantický zdrojový kód (X)HTML</h1>
+    <p>
+        Než začneme pracovat s 
+        <abbr title="Kaskádové styly (v anglickém originále Cascading Style Sheets se zkratkou CSS) je v informatice jazyk pro popis způsobu zobrazení elementů na stránkách napsaných v jazycích HTML, XHTML nebo XML. ">CSS</abbr>, musíme si být jisti, že jsme schopni adekvátně strukturovat dokumenty 
+        <abbr title="XHTML (zkratka anglického extensible hypertext markup language – „rozšiřitelný hypertextový značkovací jazyk“) je značkovací jazyk pro tvorbu hypertextových dokumentů v prostředí WWW vyvinutý W3C.">(X)HTML</abbr>  moderním způsobem.
+        Opakem k tomu, co jste se naučili v předchozích letech webového vývoje, platí, že jazyk 
+        <abbr title="XHTML (zkratka anglického extensible hypertext markup language – „rozšiřitelný hypertextový značkovací jazyk“) je značkovací jazyk pro tvorbu hypertextových dokumentů v prostředí WWW vyvinutý W3C.">(X)HTML</abbr> by neměl definovat vzhled a prezentaci webové stránky( to je práce pro 
+        <abbr title="Kaskádové styly (v anglickém originále Cascading Style Sheets se zkratkou CSS) je v informatice jazyk pro popis způsobu zobrazení elementů na stránkách napsaných v jazycích HTML, XHTML nebo XML. ">CSS</abbr>). Namísto toho je účelem 
+        <abbr title="XHTML (zkratka anglického extensible hypertext markup language – „rozšiřitelný hypertextový značkovací jazyk“) je značkovací jazyk pro tvorbu hypertextových dokumentů v prostředí WWW vyvinutý W3C.">(X)HTML</abbr> poskytnout obsahu dokumentu kontext a význam - pak se nazývá <em>sémantickým zdrojovým kódem</em>.
+    </p>
+    <h2>Vytváříme sémanticky bohatý zdrojový kód  (X)HTML</h2>
+    <p>
+        Nyní, když jsme pochopili výhody sémantického zdrojového kódu, je na místě otázka, jak se vypořádat s vytvářením kódu 
+        <abbr title="XHTML (zkratka anglického extensible hypertext markup language – „rozšiřitelný hypertextový značkovací jazyk“) je značkovací jazyk pro tvorbu hypertextových dokumentů v prostředí WWW vyvinutý W3C.">(X)HTML</abbr>, jenž je co nejlépe strukturovaný a nese co nejvíce významu.
+        Začneme používáním správných elementů 
+        <abbr title="XHTML (zkratka anglického extensible hypertext markup language – „rozšiřitelný hypertextový značkovací jazyk“) je značkovací jazyk pro tvorbu hypertextových dokumentů v prostředí WWW vyvinutý W3C.">(X)HTML</abbr>. Pokud jde o odstavec, použijete značku 
+        <span style="font-weight: bold;">&ltp></span>. Pokud jde o nadpis, použijte značku 
+        <span style="font-weight: bold;">&lthx></span>. Jestliže jde o seznam s odkazy, použijte značku 
+        <span style="font-weight: bold;">&lta></span> uvnitř elementu seznamu.
+        K určení významu obsahu byste měli používat elementy jako jsou <em>em</em> a <em>strong</em>, a poté použít CSS k určení požadovaného  vzhledu těchto elementů(jako je podtržení, kurzíva nebo tučnost)
+    </p>
+    <h2>Vytváříme šablonu stylů</h2>
+    <p>
+        Syntaxe CSS je poměrně "jednoduchá" potýkáme se zde pouze se seznamem pravidel. Jednoduchá šablona stylů může vypadat nějak takto:
+    </p>
+    <pre>
+        <code>
+    h1 {
+        color:blue;
+    }
+         
+    h2 {
+        color:green;
+    }
+        </code>
+    </pre>
+    <p>
+        Tato dvě pravidla uložte do textového souboru, ten pojmenujte s koncovkou .css a máte vlastní, plně validní (ačkoli velmi jednoduchou) externí šablonu stylů.
+    </p>
+    <hr>
+    <p>
+        <em>Z knihy: Mistrovství v CSS - Jeff Croft, Ian Lloyd, Dan Rubin<br>
+        <br>
+        Vydavatelství<strong>:Computer Press,a.s.,</strong><br>
+        Holandská 8, 639 00 Brno,<br></em>
+    </p>
+</body>
+</html>

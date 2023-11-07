@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popis kódu</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    
+    <script>hljs.highlightAll();</script>
+    <style>
+        body {
+            background-color: #e3e4e8;   
+            margin-top: 0px;
+            margin-left: 0px;
+            margin-bottom: 0px;
+            margin-right: 0px;
+        }
+        .main {
+            background-color: #f2f2f5;
+            width: 800px;
+            position: absolute;
+            left: 30%;
+            padding: 10px;
+            margin-top: 50px;
+        }
+        h1, p, h2, h3 {
+            font-family: sans-serif;
+        }
+        header   {
+            color:#CAD6FA;
+            text-align: center;
+            font-size: xx-large;
+            display: block;
+        }
+        .hlavicka {
+            height: 50px;
+            min-width: 100%;
+            background-color: #161617;
+            text-align: left ;
+            position: absolute
+        }
+        .me {
+            margin-top: 0px;
+            margin-bottom: 0px;
+            padding-top: 5px;
+            padding-left: 10px;
+            display: block;
+            float:left;
+            width: 33%;
+            color:#CAD6FA;
+            font-weight: normal;
+            font-family: sans-serif;
+        }
+        hr {
+            border: 2px solid #161617 ;
+            border-radius: 5px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+
+        }
+        .hljs {
+        background: #1e1e1e;
+        color: #cdcdcd;
+        }
+        .hljs-keyword {
+            color: #9c61ae;
+        }
+        .hljs-params {
+            color: #569cd6;
+        }
+        .hljs-title, .hljs-built_in {
+            color: #dcdcaa;
+        }
+        .hljs-string {
+            color: #bd7c4f;
+        }
+    </style>
+</head>
+<body>
+    <div class="hlavicka">
+        <h1 class="me">Nikolas stankovič</h1>
+        <header class="me">Python</header>
+    </div>
+    <div class="main">
+        <main>
+            <div class="uvod">
+                <article>
+                    <h1>
+                        Práce s API v pythonu
+                    </h1>
+                    <p>
+                        Dnes si ukážeme jak si udělat výpis z jakékoliv API hozené do tohoto
+                        programu.
+                    </p>
+                </article>
+            </div>
+            <div class="tutorial">
+                <div class="t-funkce">
+                    <h2>
+                        Funkce programu
+                    </h2>
+                    <p>
+                        V tomto programu se nacházejí 3 Funkce a každá má svojí úlohu.
+                    </p>
+                    <hr>
+                    <div class="f-tabulka">
+                        <h3>
+                            def tabulka(api)
+                        </h3>
+                        <p>
+                            Základní věc co tato funkce dělá je, že vypíše informace z té api co jí zadáme.
+                        </p>
+                        <pre>
+                            <code class="language-python">
+        def tabulka(api):
+            jsonData = api.json()
+            print(cara, "\n", api.url, "\n")
+            print("valid:", api.status_code, "\type:", api.encoding)
+            print(jsonData)
+            fileWrite(api)
+                            </code>
+                        </pre>
+                        <p>
+                            Do této funkce vkládáme proměnou api, kterou dostaneme z funkce requestBuilder ale to potom.
+                            Následně ta funkce vypíše všechno díky dané proměnné.
+                        </p>
+                        <hr>
+                    </div>
+                    <div class="f-requestBuilder">
+                        <h3>
+                            def requestBuilder(rawKey, rawApi)
+                        </h3>
+                        <p>
+                            Tato funkce bere vstup a snaží se ho převést a zkontrolovat zda vstupní hodnota
+                            je či není validní. Později si ukážeme i jak jsme tyto vstupní hodnoty dostali. 
+                        </p>
+                        <pre>
+                            <code class="language-python">
+        def requestBuilder(rawKey, rawApi):
+            if rawApi !="":
+                if rawKey !="":
+                    api = requests.get(rawApi + "&apiKey=" + rawKey)
+                    tabulka(api)
+                else:
+                    api = requests.get(rawApi)
+                    tabulka(api)
+            else:
+                print("nezadal si api debile")
+                sys.exit()
+                            </code>
+                        </pre>
+                        <p>
+                            Pomocí pythonu používáme funkci IF, která pomocí podmínky vypracuje co jí zadáme.
+                        </p>
+                        <pre>
+                            <code class="language-python">
+        if rawApi !="":
+                            </code>
+                        </pre>
+                        <p>Tato IF funkce nám říká:
+                            Pokud hodnota rawApi není prázdná, tak.<br>
+                            Pokud je to pravda, tak to následuje do další IF funkce.
+                        </p>
+                        <pre>
+                            <code class="language-python">
+        if rawKey !="":                        
+                            </code>
+                        </pre>
+                        <p>Tato IF funkce zase říká:
+                            Pokud hodnota rawKey není prázdná, tak.<br>
+                            Pokud je to pravda, tak to vypracuje čistou hodnotu api nebo i s Api klíčem.
+                        </p>
+                        <hr>
+                    </div>
+                    <div classs="f-fileWriter">
+                        <h3>fileWriter(api)</h3>
+                        <p>
+                            Funkce fileWriter slouží k zápisu informací z daného Api do souboru.
+                        </p>
+                        <pre>
+                            <code class="language-python">
+        def fileWrite(api):
+            soubor = open("log.txt", "a")
+            list = []
+            list.append(cara)
+            list.append(datetime.now().strftime('\n%Y-%m-%d %H:%M:%S'))
+            list.append("\n" + api.url)
+            list.append("\nvalid: " + str(api.status_code))
+            list.append("\ntype: " + api.encoding)
+            soubor.writelines(list)
+            soubor.writelines("\n" + str(api.json()))
+            soubor.write(cara)
+            sys.exit()
+                            </code>
+                        </pre>
+                        <p>
+                            Tato funkce nefunguje na žádné interní funkci pythonu a jednoduše to dělá přesně řádekk po řádku všechno.
+                        </p>
+                        <pre>
+                            <code class="language-python">
+        soubor = open("log.txt", "a")
+                            </code>
+                        </pre>
+                        <p>
+                            Tento řádek nám udělá hodnotu v které je otevřený soubor "log.txt", který je otevřen v hodnotě "a".
+                            Hodnota "a" nám říká, že pokud soubor s daným názvem existuje, tak ho otevře a pokračuje na dalším řádku. Pokud soubor neexistuje, tak ho vytvoří.
+                        </p>
+                        <pre>
+                            <code class="language-python">
+        list = []
+        list.append(cara)
+        list.append(datetime.now().strftime('\n%Y-%m-%d %H:%M:%S'))
+        list.append("\n" + api.url)
+        list.append("\nvalid: " + str(api.status_code))
+        list.append("\ntype: " + api.encoding)
+                            </code>
+                        </pre>
+                        <p>
+                            Zde jsme udělali prázdný list do kterého dáváme různé hodnoty.
+                            Začíná to u 
+                            <pre>
+                                <code class="language-python">
+        list.append(cara)
+                                </code>
+                            </pre>
+                        </p>
+                        <p>
+                            kde jednoduše uděláme čáru v listě.
+                            Hodnota "cara" má v sobě následující: 
+                            <pre>
+                                <code>
+        cara = "\n----------------------                         
+                                </code>
+                            </pre>
+                        </p>
+                        <p>
+                            "\n" Znamená, že to napíše o řádek dolů. Tím děláme to, že to nebude celé na jednom řádku a je to více čitelné.
+                        </p>
+                        <p>
+                            Dále použijeme "import" kvůli času. Čas je tam čistě kvůli čitelnosti.
+                        </p>
+                        <pre>
+                            <code class="language-python">
+        from datetime import datetime
+        ...
+        ...
+
+        def fileWrite(api):
+            ...
+            ...
+
+            list.append(datetime.now().strftime('\n%Y-%m-%d %H:%M:%S'))
+                            </code>
+                        </pre>
+                        <p>
+                            Knihovna datetime si myslím, že mluví sama za sebe co dělá...
+                            Co se týče listu, tak do něj dáváme momentální čas, což je hodnota "datetime.now()". to co následuje poté, je formátování toho jak to má vypadat.
+                        </p>
+                        <pre>
+                            <code class="language-python">
+        list.append("\n" + api.url)
+        list.append("\nvalid: " + str(api.status_code))
+        list.append("\ntype: " + api.encoding)
+                            </code>
+                        </pre>
+                        <p>
+                            Následující věci co vkládáme jsou stejné jako ve funkci tabulka(api) takže byste měli vědět co to znamená.
+                        </p>
+                        <pre>
+                            <code class="language-python">
+        soubor.writelines(list)
+                            </code>
+                        </pre>
+                        <p>
+                            Tady už vkládáme do našeho souboru to co máme v listu.
+                            "writelines" nám říká, že to není jen jedna hodnota jelikož v listu jich je více.
+                        </p>
+                        <pre>
+                            <code class="language-python">
+        soubor.writelines("\n" + str(api.json()))
+        soubor.write(cara)
+                            </code>
+                        </pre>
+                        <p>
+                            Tady zapisujeme do souboru čistě to, co nám api vyplivne a napíšeme další čáru pro čitelnost.
+                        </p>
+                        <pre>
+                            <code class="language-python">
+        sys.exit()    
+                            </code>
+                        </pre>
+                        <p>
+                            Tento řádek nám říká ať vypne program. nic víc, nic míň.
+                        </p>
+                        <hr>
+                    </div>
+                </div>
+                <div class="api">
+                    <h3>
+                        Jak získáváme hodnotu Api
+                    </h3>
+                    <pre>
+                        <code class="language-python">
+    requestBuilder(rawApi = input("zadej api\n"), rawKey = input("zadej key\n"))
+                        </code>
+                    </pre>
+                    <p>
+                        Všechno začíná tím, že spustíme funkci requestBuilder s tím, že do ní chceme dát 2 vstupní hodnoty.<br>
+                    </p>
+                    <pre>
+                        <code class="language-python"> 
+    rawApi = input("zadej api\n")
+    rawKey = input("zadej key\n")
+                        </code>
+                    </pre>
+                    <p>
+                        Obě fungují na získání proměnné pomocí uživatele. Python funkce "input" nám umožňuje brát hodnoty od uživatele.
+                        jelikož naše funkce potřebuje do vstupu 2 hodnoty, tak to vypadá ve tvaru tomhle:
+                    </p>
+                    <pre>
+                        <code class="language-python">
+    funkce(Argument1, Argument2)
+                        </code>
+                    </pre>
+                    <p>
+                        Python rozpozná, že oba argumenty získává pomocí uživatele, tak se na obě postupně zeptá.
+                    </p>
+                    <hr>
+                </div>
+            </div>
+            <div class="zaver">
+                <h2>
+                    Zkompletovaný kód:
+                </h3>
+                <pre>
+                    <code class="language-python">
+    import requests
+    import json
+    from datetime import datetime
+    import sys
+
+    while True:
+        cara = "\n----------------------"
+        def tabulka(api):
+            jsonData = api.json()
+            print(cara, "\n", api.url, "\n")
+            print("valid:", api.status_code, "\type:", api.encoding)
+            print(jsonData)
+            fileWrite(api)
+                        
+        def requestBuilder(rawKey, rawApi):
+            if rawApi !="":
+                if rawKey !="":
+                    api = requests.get(rawApi + "&apiKey=" + rawKey)
+                    tabulka(api)
+                else:
+                    api = requests.get(rawApi)
+                    tabulka(api)
+            else:
+                print("nezadal si api debile")
+                sys.exit()
+                        
+        def fileWrite(api):
+            soubor = open("log.txt", "a")
+            list = []
+            list.append(cara)
+            list.append(datetime.now().strftime('\n%Y-%m-%d %H:%M:%S'))
+            list.append("\n" + api.url)
+            list.append("\nvalid: " + str(api.status_code))
+            list.append("\ntype: " + api.encoding)
+            soubor.writelines(list)
+            soubor.writelines("\n" + str(api.json()))
+            soubor.write(cara)
+            sys.exit()
+                        
+        requestBuilder(rawApi = input("zadej api\n"), rawKey = input("zadej key\n"))
+                    </code>
+                </pre>
+                <p>
+                    Není to nic těžkého. Každý kdo se v pythonu vyzná by to byl schopný udělat.
+                </p>
+            </div>
+        </main>
+    </div>   
+    <div class="spodniHlavicka">
+    </div>
+</body>
+</html>
